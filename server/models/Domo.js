@@ -25,7 +25,7 @@ const DomoSchema = new mongoose.Schema({
     required: true,
     ref: 'Account',
   },
-  createdDate: {
+  createdData: {
     type: Date,
     default: Date.now,
   },
@@ -40,9 +40,11 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
   const search = {
     owner: convertId(ownerId),
   };
+
   return DomoModel.find(search).select('name age').lean().exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);
 
-module.exports = { DomoModel, DomoSchema };
+module.exports.DomoModel = DomoModel;
+module.exports.DomoSchema = DomoSchema;
