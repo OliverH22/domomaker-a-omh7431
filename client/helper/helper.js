@@ -1,3 +1,10 @@
+const getToken = (callback,data) => {
+    //console.log("Token called.");
+    sendAjax('GET','/getToken', null, (result) => {
+      callback(result.csrfToken,data);
+    })
+  };
+
 const handleError = (message) => {
     $("#errorMessage").text(message);
     $("#domoMessage").animate({width:'toggle'},350);
